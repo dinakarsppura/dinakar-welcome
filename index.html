@@ -1,127 +1,396 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DINAKAR WELCOMES YOU</title>
+    <meta name="description" content="Welcome to Dinakar's personal website — exploring IT infrastructure, networking, cybersecurity and system design.">
+    <meta name="theme-color" content="#0b0b12">
+    <title>Dinakar | IT & Cybersecurity</title>
 
     <style>
+        :root {
+            --bg: #0b0b12;
+            --panel: #14141e;
+            --text: #f7f7fb;
+            --muted: #a5a5b7;
+            --accent: #ff4d67;
+            --border: rgba(255,255,255,.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
         body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             font-family: "Segoe UI", Arial, sans-serif;
-            background: linear-gradient(135deg, #8b0000, #c62828, #ff7043);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(11,11,18,.88);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: .92rem;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 83vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            position: relative;
             overflow: hidden;
+            padding: 90px 0;
         }
 
-        .background {
+        .hero::before {
+            content: "";
             position: absolute;
-            inset: 0;
-            overflow: hidden;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .circle1 {
-            width: 400px;
-            height: 400px;
-            top: -180px;
-            left: -120px;
-        }
-
-        .circle2 {
             width: 500px;
             height: 500px;
-            bottom: -250px;
-            right: -150px;
+            background: rgba(255,77,103,.13);
+            filter: blur(120px);
+            border-radius: 50%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
         }
 
-        .card {
+        .hero-content {
             position: relative;
-            z-index: 2;
-            width: min(90%, 800px);
-            padding: 70px 40px;
-            text-align: center;
-
-            background: rgba(255, 255, 255, 0.14);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 30px;
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
-
-            animation: appear 1.2s ease;
+            animation: appear 1s ease both;
         }
 
-        .welcome-icon {
-            font-size: 55px;
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 15px;
+            border: 1px solid rgba(255,77,103,.4);
+            border-radius: 50px;
+            color: #ff8798;
+            background: rgba(255,77,103,.07);
+            font-size: .85rem;
             margin-bottom: 25px;
-            animation: wave 2s infinite;
         }
 
         h1 {
-            color: white;
-            font-size: clamp(35px, 7vw, 70px);
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            font-size: clamp(2.7rem, 7vw, 5.5rem);
+            line-height: 1.12;
+            letter-spacing: -2px;
         }
 
         h1 span {
-            color: #ffe0b2;
+            display: block;
+            color: var(--accent);
         }
 
-        .underline {
-            width: 120px;
-            height: 5px;
-            margin: 30px auto 0;
-            background: white;
-            border-radius: 10px;
+        .hero p {
+            max-width: 650px;
+            margin: 25px auto 30px;
+            color: var(--muted);
+            font-size: 1.1rem;
         }
 
-        .footer {
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 23px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            transition: transform .2s, background .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .btn-secondary {
+            background: var(--panel);
+        }
+
+        /* Common sections */
+        section {
+            padding: 85px 0;
+        }
+
+        .section-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: .78rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .section-intro {
+            max-width: 650px;
+            color: var(--muted);
+            margin-bottom: 38px;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .quote-card {
+            background: linear-gradient(145deg, #1b1b29, #11111a);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .quote-card .symbol {
+            color: var(--accent);
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .quote-card h3 {
+            font-size: 1.35rem;
+            margin: 10px 0;
+        }
+
+        .quote-card p {
+            color: var(--muted);
+        }
+
+        /* Interest cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform .25s, border-color .25s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,77,103,.6);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            background: rgba(255,77,103,.1);
+            border-radius: 12px;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: .94rem;
+        }
+
+        /* Learning roadmap */
+        .roadmap {
+            border-left: 2px solid rgba(255,77,103,.5);
+            margin-left: 8px;
+            padding-left: 28px;
+        }
+
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .roadmap-item::before {
+            content: "";
             position: absolute;
-            bottom: 25px;
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 14px;
-            letter-spacing: 2px;
+            left: -36px;
+            top: 9px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 15px rgba(255,77,103,.5);
+        }
+
+        .roadmap-item h3 {
+            margin-bottom: 5px;
+        }
+
+        .roadmap-item p {
+            color: var(--muted);
+        }
+
+        /* Contact */
+        .contact-box {
+            text-align: center;
+            padding: 50px 25px;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            background: linear-gradient(135deg, #19121c, #151520);
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin: 15px auto 25px;
+            max-width: 560px;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 25px 0;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        footer span {
+            color: var(--accent);
         }
 
         @keyframes appear {
             from {
                 opacity: 0;
-                transform: translateY(40px) scale(0.9);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
 
-        @keyframes wave {
-            0%, 100% {
-                transform: rotate(0deg);
+        @media (max-width: 760px) {
+            .nav-links {
+                gap: 12px;
             }
-            25% {
-                transform: rotate(-10deg);
+
+            .nav-links a {
+                font-size: .8rem;
             }
-            75% {
-                transform: rotate(10deg);
+
+            .about-grid,
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 75vh;
+            }
+
+            h1 {
+                letter-spacing: -1px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            nav {
+                flex-direction: column;
+                justify-content: center;
+                padding: 12px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
@@ -129,27 +398,211 @@
 
 <body>
 
-    <div class="background">
-        <div class="circle circle1"></div>
-        <div class="circle circle2"></div>
+<header>
+    <nav class="container" aria-label="Main navigation">
+        <a href="#home" class="logo">DINAKAR<span>.</span></a>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#journey">My Journey</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="eyebrow">WELCOME TO MY DIGITAL SPACE</div>
+
+            <h1>
+                Hello, I'm
+                <span>DINAKAR.</span>
+            </h1>
+
+            <p>
+                Exploring the world of IT infrastructure, networking,
+                cybersecurity and system design — one practical project
+                at a time.
+            </p>
+
+            <div class="buttons">
+                <a class="btn btn-primary" href="#about">Discover More ↗</a>
+                <a class="btn btn-secondary" href="#interests">Explore My Interests</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <div class="section-label">A little about me</div>
+                <h2 class="section-title">Technology is more than just IT.</h2>
+
+                <p>
+                    Welcome to my personal website! I enjoy understanding
+                    how computers, networks, operating systems and
+                    infrastructure work behind the scenes.
+                </p>
+
+                <p>
+                    My goal is to keep learning, build practical labs,
+                    solve real-world technical problems and strengthen
+                    my knowledge of secure and reliable systems.
+                </p>
+            </div>
+
+            <div class="quote-card">
+                <div class="symbol">“</div>
+                <h3>Learn. Build. Secure. Improve.</h3>
+                <p>
+                    Every problem is an opportunity to understand
+                    technology a little better.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="interests">
+        <div class="container">
+            <div class="section-label">What I explore</div>
+            <h2 class="section-title">My Technical Interests</h2>
+            <p class="section-intro">
+                The technologies and disciplines I enjoy learning
+                through hands-on practice.
+            </p>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">🌐</div>
+                    <h3>Networking</h3>
+                    <p>
+                        TCP/IP, routing, switching, VLANs, DNS,
+                        firewalls and network troubleshooting.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">🛡️</div>
+                    <h3>Cybersecurity</h3>
+                    <p>
+                        Defensive security, threat detection, security
+                        monitoring, vulnerability analysis and incident
+                        investigation.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">⚙️</div>
+                    <h3>Systems & Infrastructure</h3>
+                    <p>
+                        Windows Server, Linux, Active Directory,
+                        virtualization, Docker and automation.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">🏗️</div>
+                    <h3>System Design</h3>
+                    <p>
+                        Understanding architecture, scalability,
+                        reliability, availability and secure design.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">💻</div>
+                    <h3>Programming</h3>
+                    <p>
+                        Python, PowerShell and scripting to automate
+                        repetitive tasks and solve IT problems.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon" aria-hidden="true">🔬</div>
+                    <h3>Home Lab</h3>
+                    <p>
+                        Experimenting with virtual machines, servers,
+                        networks, monitoring and practical IT scenarios.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="journey">
+        <div class="container">
+            <div class="section-label">Continuous learning</div>
+            <h2 class="section-title">My Learning Journey</h2>
+            <p class="section-intro">
+                Building a strong foundation and progressing through
+                hands-on experiments.
+            </p>
+
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <h3>01. Networking Fundamentals</h3>
+                    <p>
+                        Understand addressing, subnetting, DNS,
+                        routing, switching and troubleshooting.
+                    </p>
+                </div>
+
+                <div class="roadmap-item">
+                    <h3>02. Operating Systems & Infrastructure</h3>
+                    <p>
+                        Practice Linux, Windows Server, Active Directory,
+                        virtualization and containers.
+                    </p>
+                </div>
+
+                <div class="roadmap-item">
+                    <h3>03. Cybersecurity & Monitoring</h3>
+                    <p>
+                        Learn security fundamentals, log analysis,
+                        threat detection and defensive operations.
+                    </p>
+                </div>
+
+                <div class="roadmap-item">
+                    <h3>04. Automation & System Design</h3>
+                    <p>
+                        Build useful tools, automate workflows and
+                        design reliable, maintainable systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-box">
+                <div class="section-label">Thanks for visiting</div>
+                <h2 class="section-title">Keep Learning. Keep Building.</h2>
+                <p>
+                    Technology never stops evolving. Neither should we.
+                    Thanks for visiting my digital space!
+                </p>
+                <a class="btn btn-primary" href="#home">Back to Top ↑</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>Designed with curiosity by <span>DINAKAR</span>.</p>
+        <p>© <span id="year"></span> Dinakar. All rights reserved.</p>
     </div>
+</footer>
 
-    <div class="card">
-
-        <div class="welcome-icon">👋</div>
-
-        <h1>
-            <span>DINAKAR</span><br>
-            WELCOMES YOU
-        </h1>
-
-        <div class="underline"></div>
-
-    </div>
-
-    <div class="footer">
-        WELCOME • ENJOY • HAVE A GREAT DAY
-    </div>
+<script>
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+</script>
 
 </body>
 </html>
